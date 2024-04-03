@@ -1,0 +1,38 @@
+
+  
+  <div id="content">
+    <h3>Managing Products</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ product.name }}</td>
+          <td>${{ product.price }}</td>
+          <td>
+            <!-- Example actions -->
+            {% if not product.is_approved %}
+              <a href="javascript:void(0)" onclick="approveProduct('{{ product.id }}')" class="btn btn-success btn-sm">Approve</a>
+            {% endif %}
+            <a href="javascript:void(0)" onclick="deleteProduct('{{ product.id }}')" class="btn btn-danger btn-sm">Delete</a>
+
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    
+      
+  
+  
+
+  

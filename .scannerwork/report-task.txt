@@ -1,0 +1,6 @@
+projectKey=book2
+serverUrl=http://host.docker.internal:9000
+serverVersion=10.4.1.88267
+dashboardUrl=http://host.docker.internal:9000/dashboard?id=book2
+ceTaskId=f34c04e4-fbb0-4d80-8206-db8c1a84e8b0
+ceTaskUrl=http://host.docker.internal:9000/api/ce/task?id=f34c04e4-fbb0-4d80-8206-db8c1a84e8b0

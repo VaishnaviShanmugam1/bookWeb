@@ -1,0 +1,120 @@
+.card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  transition: box-shadow 0.3s;
+  height: 100%; /* Set the height of the card */
+}
+
+.card:hover {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top,
+.book-image {
+  width: 100%;
+  height: 225px; /* Adjusted to match the card-img-top height */
+  object-fit: cover;
+}
+
+.book-title {
+  min-height: 60px; /* Set the minimum height of the book title */
+}
+
+/* Updated CSS for cart symbol */
+#cart-symbol {
+  order: 1;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+}
+  .welcome-message, .favorite-books {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .welcome-message {
+    color: #007bff; /* Bootstrap primary color for the welcome message */
+  }
+  .favorite-books {
+    color: #28a745; /* Bootstrap success color for the subtitle */
+  }
+
+  .star-rating {
+    direction: rtl; /* Right-to-left to allow filling stars from right to left */
+    font-size: 24px;
+}
+.star-rating .star {
+    display: none; /* Hide radio buttons */
+}
+.star-rating label {
+    cursor: pointer;
+    color: #ccc; /* Color for unselected stars */
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating .star:checked ~ label {
+    color: gold; /* Color for selected stars */
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .book-image {
+    width: 100%; /* Make image width consistent */
+    height: 200px; /* Fixed height for all images */
+    object-fit: contain; /* Ensures images don't get stretched or squished */
+    background: #f8f9fa; /* Light background for images with white space */
+  }
+  .card-title {
+    font-size: 1.0em;
+    color: #0056b3; /* A more vibrant blue */
+    font-weight: bold;
+  }
+  .card-text {
+    font-size: 0.9em; /* Slightly smaller text for details */
+  }
+  .add-to-cart-btn {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: white;
+    margin-top: auto; /* Pushes the button to the bottom */
+    border: none;
+  }
+  .add-to-cart-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  /* Spacing around the cards */
+  .col-lg-3 {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+ 
+
+
+.navbar-collapse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* This will push the .ml-auto div to the right */
+}
+
+/* Ensure the user dropdown aligns properly without absolute positioning */
+.nav-item.dropdown {
+order: 2; /* Ensures dropdown is positioned to the far right */
+}
+
+
+/* Add a media query for when the navbar expands to prevent overlap */
+@media (min-width: 992px) {
+#cart-symbol {
+  padding-right: 1rem;
+  font-size: 1rem; 
+  align-self: center; /* Align vertically */
+  margin-right: 0.5rem; /* Ensure some space to the right side */
+  text-decoration: none;/* Add some space between cart symbol and user dropdown */
+}
+}
+.ml-auto {
+  margin-left: auto;
+}
+

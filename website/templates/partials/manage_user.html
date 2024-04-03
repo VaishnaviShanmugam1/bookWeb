@@ -1,0 +1,33 @@
+
+<div id="content">
+    
+    <h3>Managing Products</h3>
+    <table class="table">
+ 
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+            {% if user.is_active %} <!-- Check if the user is currently active -->
+                <a href="javascript:void(0)" onclick="blockUser('{{ user.id }}')" class="btn btn-warning btn-sm">Block</a>
+            {% else %}
+                <a href="javascript:void(0)" onclick="unblockUser('{{ user.id }}')" class="btn btn-secondary btn-sm">Unblock</a>
+            {% endif %}
+          <a href="javascript:void(0)" onclick="deleteUser('{{ user.id }}')" class="btn btn-danger btn-sm">Delete</a>
+        
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

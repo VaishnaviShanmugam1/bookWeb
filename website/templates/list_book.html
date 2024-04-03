@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Seller Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Welcome, {{ user.first_name }}! This is your Seller Dashboard.</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>List a New Book</h4>
+            <form method="POST" action="{{ url_for('views.list_book') }}" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <div class="form-group">
+                    <label for="isbn">ISBN</label>
+                    <input type="text" class="form-control" id="isbn" name="isbn" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" class="form-control" id="author" name="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number"  class="form-control" id="price" name="price" required>
+                </div>
+                <button type="submit" class="btn btn-primary">List Book</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <h4>Your Listed Books</h4>
+    <div class="row">
+        {% for book in listed_books %}
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <!-- Book Image -->
+                <img src="{{ book.image_url }}" alt="{{ book.name }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                
+                <!-- Book Details -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
+                    <p class="card-text">Year: {{ book.year }}</p>
+                    <p class="card-text">Price: ${{ book.price }}</p>
+                    {% if book.is_approved %}
+                        <p class="card-text text-success">Approved</p>
+                    {% else %}
+                        <p class="card-text text-warning">Pending for Approval</p>
+                    {% endif %}
+                </div>
+                
+                <!-- Edit Price Form -->
+                <div class="card-footer">
+                    <form action="{{ url_for('views.edit_book', book_id=book.id) }}" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <div class="input-group mb-2">
+                            <input type="number" class="form-control" name="new_price" value="{{ book.price }}" required>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-secondary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <!-- Remove Book Form -->
+                    <form action="{{ url_for('views.remove_book', book_id=book.id) }}" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <p>You have not listed any books yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    /* Add any additional CSS styles here */
+    .card-body form {
+        margin-top: 10px; /* Spacing between forms/buttons */
+    }
+    .card-body form input[type="number"] {
+        width: auto; /* Ensure the input doesn't stretch too wide */
+        display: inline-block; /* Allows input and button to be on the same line */
+    }
+    </style>
